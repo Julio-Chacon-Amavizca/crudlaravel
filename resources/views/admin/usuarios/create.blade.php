@@ -13,11 +13,12 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group" id="name">
+                            <div class="form-group">
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                                <input type="text" class="form-control" name="name" placeholder="Nombre"
+                                    value="{{old('name')}}" required>
                                 @error('name')
-                                <s class="alert alert-danger">{{ $message }}
+                                <small style="color: rgb(208, 17, 17)">{{ $message }}
                                 </small>
                                 @enderror
                             </div>
@@ -26,29 +27,33 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                                <label for="">Correo electronico</label>
+                                <input type="text" class="form-control" name="email" placeholder="Email"
+                                    value="{{old('email')}}" required>
                                 @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <small style="color: rgb(208, 17, 17)">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group" id="password">
+                            <div class="form-group">
                                 <label for="">Contraseña</label>
-                                <input type="password" class="form-control" name="password" id="password"
-                                    placeholder="Contraseña">
+                                <input type="password" class="form-control" name="password" placeholder="Contraseña"
+                                    required>
+                                @error('password')
+                                <small style="color: rgb(208, 17, 17)">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group" id="password_verify">
+                            <div class="form-group">
                                 <label for="">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" name="password_verify" id="password_verify"
-                                    placeholder="Confirmar Contraseña">
+                                <input type="password" class="form-control" name="password_confirmation"
+                                    placeholder="Confirmar Contraseña" required>
                             </div>
                         </div>
                     </div>
