@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th>
-                                <center>ID</center>
+                                <center>Nro</center>
                             </th>
                             <th>
                                 <center>Nombre</center>
@@ -33,19 +33,39 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $contador = 0;
+                        @endphp
                         @foreach($usuarios as $usuario)
+                        @php
+                        $contador++;
+                        @endphp
                         <tr>
-                            <td>
-                                <center>{{ $usuario->id }}</center>
+                            <td style="text-align: center">
+                                {{ $contador }}
                             </td>
                             <td>
-                                <center>{{ $usuario->name }}</center>
+                                {{ $usuario->name }}
                             </td>
                             <td>
-                                <center>{{ $usuario->email }}</center>
+                                {{ $usuario->email }}
                             </td>
-                            <td>
-
+                            <td style="text-align: center">
+                                <div class="btn-group" role="group" aria-label="basic example">
+                                    <a href="{{route('usuarios.show', $usuario->id)}}" type="button"
+                                        class="btn btn-info"><i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="{{route('usuarios.edit', $usuario->id)}}" type="button"
+                                        class="btn btn-success"><i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"
+                                            style="border-radius: 0 5px 5px 0"><i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
