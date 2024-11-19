@@ -49,7 +49,7 @@ class UsuarioController extends Controller
         //$usuario->password = bcrypt($request->password);
 
         $usuario->save();
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario creado con éxito')->with('icono', 'success');
     }
 
     /**
@@ -94,7 +94,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario actualizado con éxito')->with('icono', 'success');
     }
 
     /**
@@ -104,7 +104,7 @@ class UsuarioController extends Controller
     {
         //
         User::destroy($id);
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index') ->with('mensaje', 'Usuario eliminado con éxito')->with('icono', 'success');
         /*$usuario = User::findOrFail($id);
         $usuario->delete();*/
         // echo "Eliminando usuario con id: " . $id;
