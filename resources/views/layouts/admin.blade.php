@@ -242,7 +242,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item" style="background-color: rgb(191, 61, 61)">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                <i class=" nav-icon fas"><i class="bi bi-door-closed"></i></i> Cerrar Sesion
+                                <i class=" nav-icon fas"><i class="bi bi-door-closed"></i></i>
+                                <p>Cerrar Sesion</p>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
