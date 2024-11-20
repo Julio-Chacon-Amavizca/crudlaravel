@@ -104,7 +104,7 @@ class UsuarioController extends Controller
     {
         //
         User::destroy($id);
-        return redirect()->route('usuarios.index') ->with('mensaje', 'Usuario eliminado con éxito')->with('icono', 'success');
+        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario eliminado con éxito')->with('icono', 'error');
         /*$usuario = User::findOrFail($id);
         $usuario->delete();*/
         // echo "Eliminando usuario con id: " . $id;
