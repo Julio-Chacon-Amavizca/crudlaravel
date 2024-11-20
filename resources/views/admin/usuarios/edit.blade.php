@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Correo electronico</label>
-                                <input type="text" class="form-control" name="email" placeholder="Email"
+                                <input type="email" class="form-control" name="email" placeholder="Email"
                                     value="{{$usuario->email}}" required>
                                 @error('email')
                                 <small style="color: rgb(208, 17, 17)">{{ $message }}</small>
