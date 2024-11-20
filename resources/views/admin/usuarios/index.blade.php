@@ -9,7 +9,7 @@
             <div class="card-header">
                 <h3 class="card-title">Datos Registrados</h3>
                 <div class="card-tools">
-                    <a href="{{url('/admin/usuarios/create')}}" class="btn btn-primary"><i
+                    <a href="{{ url('/admin/usuarios/create') }}" class="btn btn-primary"><i
                             class="bi bi-person-fill-add"></i>
                         Nuevo Usuario</a>
                 </div>
@@ -33,12 +33,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                        $contador = 0;
-                        @endphp
-                        @foreach($usuarios as $usuario)
+                        @php $contador = 0; @endphp
+                        @foreach ($usuarios as $usuario)
                         @php
                         $contador++;
+                        $id = $usuario->id;
                         @endphp
                         <tr>
                             <td style="text-align: center">
@@ -52,19 +51,40 @@
                             </td>
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="basic example">
-                                    <a href="{{route('usuarios.show', $usuario->id)}}" type="button"
+                                    <a href="{{ route('usuarios.show', $usuario->id) }}" type="button"
                                         class="btn btn-info"><i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{route('usuarios.edit', $usuario->id)}}" type="button"
+                                    <a href="{{ route('usuarios.edit', $usuario->id) }}" type="button"
                                         class="btn btn-success"><i class="bi bi-pencil"></i>
                                     </a>
-                                    <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST">
+                                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST"
+                                        onclick="preguntar<?=$id;?>(event)" id="miFormulario<?=$id;?>">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"
                                             style="border-radius: 0 5px 5px 0"><i class="bi bi-trash"></i>
                                         </button>
                                     </form>
+                                    <script>
+                                        function preguntar<?=$id;?>(event) {
+                                            event.preventDefault();
+                                            Swal.fire({
+                                                title: 'Eliminar registro',
+                                                text: "¿Desea eliminar este registro?",
+                                                icon: 'question',
+                                                showDenyButton: true,
+                                                confirmButtonColor: '#a5161d',
+                                                confirmButtonText: 'Eliminar',
+                                                denyButtonColor: '#270a0a',
+                                                denyButtonText: 'Cancelar',
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    var form = $('#miFormulario<?=$id;?>');
+                                                    form.submit();
+                                                }
+                                            })
+                                        }
+                                    </script>
                                 </div>
                             </td>
                         </tr>
@@ -75,5 +95,4 @@
         </div>
     </div>
 </div>
-
 @endsection
